@@ -10,11 +10,13 @@
     <h1>Address</h1>
     <h2>Shipping Information</h2>
     <form>
-        <label>First Name:</label>
-        <input type="text" name="firstName">
-        <br>
-   
-        <label>Last Name:</label>
+        <fieldset>
+            <legend>Personal Information</legend>
+            <label>First Name:</label>
+            <input type="text" name="firstName">
+            <br>
+
+            <label>Last Name:</label>
         <input type="text" name="lastName">     
         <br>
   
@@ -50,17 +52,19 @@
         <input type="checkbox" name="save contact information" id="saveContactInformation">
         <label for="saveContactInformation">Save contact information</label>
         </div>
-
+    </fieldset>
+    <fieldset>
+        <legend>Payment Information</legend>
        <section>
-            <h3>Payment Information</h3>
-    
+    <fieldset>
         <button type="button" style="width: 50px; height: 25px;">
             <img src="https://cdn-icons-png.flaticon.com/128/888/888870.png" alt="button" style="width: 100%; height: 100%; object-fit: contain;">
         </button> 
          
         <button type="button" style="width: 50px; height: 25px;">Cash</button>
-            
+    </fieldset>
 
+        <fieldset>
         <br>
         <label>Cardholder Name:</label>
         <input type="text" name="cardholderName">
@@ -89,13 +93,13 @@
      <br>
         <input type="checkbox" name="save card data for future payments" id="saveCardData">
         <label for="saveCardData">Save card data for future payments</label>
-    
+    </fieldset>
            <br>
         <button type="button"><span>Pay with card</span>
         </button>
        </section>
 </form>
-
+     </fieldset>
 
 
 </body>
