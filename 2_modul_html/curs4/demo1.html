@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View All Products</title>
+    <style>
+        /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #1f2d1f;
+            background: #faf9f7;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        /* HEADER */
+        header {
+            background: #f6efe8;
+            border-bottom: 1px solid #e3ddd6;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .menu a {
+            margin: 0 12px;
+            font-size: 14px;
+        }
+
+        .menu a.sale {
+            color: #d33;
+            font-weight: 600;
+        }
+
+        .search {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .search input {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            width: 180px;
+        }
+
+        /* BREADCRUMB */
+        .breadcrumb {
+            max-width: 1200px;
+            margin: 20px auto;
+            font-size: 13px;
+            color: #777;
+        }
+
+        /* LAYOUT */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 24px;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .sidebar h3 {
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        .filter {
+            margin-bottom: 20px;
+        }
+
+        .filter label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .apply {
+            width: 100%;
+            padding: 10px;
+            background: #111;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+        }
+
+        /* MAIN */
+        .main h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            border-radius: 10px;
+            padding: 12px;
+            position: relative;
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #e53935;
+            color: #fff;
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 20px;
+        }
+
+        .title {
+            margin: 10px 0 6px;
+            font-size: 14px;
+        }
+
+        .price {
+            font-weight: 700;
+        }
+
+        .old {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 13px;
+            margin-left: 6px;
+        }
+
+        .card button {
+            width: 100%;
+            margin-top: 10px;
+            padding: 8px;
+            border: 1px solid #bbb;
+            background: #fff;
+            border-radius: 20px;
+        }
+
+        /* PAGINATION */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin: 30px 0;
+        }
+
+        .pagination a {
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .pagination .active {
+            background: #111;
+            color: #fff;
+        }
+
+        /* NEWSLETTER */
+        .newsletter {
+            background: #e9dfd3;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+
+        .newsletter .inner {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .newsletter h2 {
+            font-size: 22px;
+        }
+
+        .newsletter input {
+            padding: 10px;
+            width: 260px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+        }
+
+        .newsletter button {
+            padding: 10px 20px;
+            border: none;
+            background: #111;
+            color: #fff;
+            border-radius: 20px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #fff;
+            border-top: 1px solid #e5e5e5;
+            padding: 40px 20px;
+        }
+
+        .footer {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            font-size: 14px;
+        }
+
+        .footer h4 {
+            margin-bottom: 10px;
+        }
+
+        .copy {
+            max-width: 1200px;
+            margin: 20px auto 0;
+            font-size: 13px;
+            color: #777;
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:1024px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media(max-width:600px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter .inner {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="nav">
+            <div class="logo">IT Fashion</div>
+            <nav class="menu">
+                <a href="#">Home</a>
+                <a href="#">Shop</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#" class="sale">Sale!</a>
+            </nav>
+            <div class="search">
+                <input type="text" placeholder="Search" />
+            </div>
+        </div>
+    </header>
+
+    <div class="breadcrumb">Home / Shop / View All</div>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Filters</h3>
+            <div class="filter">
+                <strong>Brand</strong>
+                <label><input type="checkbox"> Zara</label>
+                <label><input type="checkbox"> H&M</label>
+                <label><input type="checkbox"> Bershka</label>
+            </div>
+            <div class="filter">
+                <strong>Categories</strong>
+                <label><input type="checkbox"> Sweaters</label>
+                <label><input type="checkbox"> Shirts</label>
+                <label><input type="checkbox"> All items</label>
+            </div>
+            <button class="apply">Apply Filters</button>
+        </aside>
+
+        <main class="main">
+            <h1>View All Products</h1>
+            <div class="meta">
+                <span>Showing 13–24 of 312 products</span>
+                <span>Sort by: Most Popular</span>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x380" alt="">
+                    <div class="title">Blazer</div>
+                    <div class="price">$95</div>
+                    <button>Add to Cart</button>
+                </div>
+
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x380" alt="">
+                    <div class="title">Elegant Trousers</div>
+                    <div class="price">$72</div>
+                    <button>Add to Cart</button>
+                </div>
+
+                <div class="card">
+                    <span class="badge">SALE</span>
+                    <img src="https://via.placeholder.com/300x380" alt="">
+                    <div class="title">Wool Blazer</div>
+                    <div class="price">$50 <span class="old">$55</span></div>
+                    <button>Add to Cart</button>
+                </div>
+
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x380" alt="">
+                    <div class="title">Chunky Knit Sweater</div>
+                    <div class="price">$55</div>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="pagination">
+                <a href="#">Back</a>
+                <a href="#">1</a>
+                <a href="#" class="active">2</a>
+                <a href="#">3</a>
+                <a href="#">Next</a>
+            </div>
+        </main>
+    </div>
+
+    <section class="newsletter">
+        <div class="inner">
+            <h2>Stay up to date about our best offers!</h2>
+            <div>
+                <input type="email" placeholder="Enter your email">
+                <button>Subscribe</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer">
+            <div>
+                <h4>Shop</h4>
+                <p>Dresses</p>
+                <p>Jackets</p>
+                <p>Skirts</p>
+            </div>
+            <div>
+                <h4>Information</h4>
+                <p>About</p>
+                <p>Privacy Policy</p>
+                <p>Delivery & Return</p>
+            </div>
+            <div>
+                <h4>Customer Support</h4>
+                <p>Contact</p>
+                <p>Help</p>
+                <p>FAQ</p>
+            </div>
+        </div>
+        <div class="copy">Designed and developed by LinkAcademy</div>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>View All Products</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #fafafa;
+            color: #222;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 40px;
+            background: #f6eee6;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .nav a {
+            margin: 0 12px;
+            text-decoration: none;
+            color: #222;
+        }
+
+        .nav .sale {
+            color: red;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .header-actions input {
+            padding: 6px 10px;
+        }
+
+        .breadcrumb {
+            padding: 20px 40px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 40px;
+            padding: 0 40px 60px;
+        }
+
+        .filters {
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        .filter-group {
+            margin-bottom: 20px;
+        }
+
+        .filter-group h4 {
+            margin-bottom: 10px;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .apply-btn {
+            width: 100%;
+            padding: 10px;
+            background: #111;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .products h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .results {
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            position: relative;
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 6px;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .price {
+            margin-bottom: 12px;
+        }
+
+        .price span {
+            text-decoration: line-through;
+            color: #888;
+            font-size: 14px;
+        }
+
+        .card button {
+            padding: 8px 14px;
+            border: 1px solid #111;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: red;
+            color: #fff;
+            font-size: 12px;
+            padding: 4px 6px;
+        }
+
+        .pagination {
+            margin-top: 40px;
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .pagination button {
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            background: #fff;
+        }
+
+        .pagination .active {
+            background: #111;
+            color: #fff;
+        }
+
+        .newsletter {
+            background: #eadfd4;
+            padding: 50px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 60px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .newsletter-form input {
+            padding: 10px;
+            width: 260px;
+        }
+
+        .newsletter-form button {
+            padding: 10px 20px;
+            background: #111;
+            color: #fff;
+            border: none;
+        }
+
+        .footer {
+            background: #fff;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            font-size: 14px;
+        }
+
+        .footer h4 {
+            margin-bottom: 12px;
+        }
+
+        .footer p {
+            margin-bottom: 6px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="logo">IT</div>
+        <nav class="nav">
+            <a href="#">Home</a>
+            <a href="#">Shop</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+            <a href="#" class="sale">Sale!</a>
+        </nav>
+        <div class="header-actions">
+            <input type="text" placeholder="Search" />
+            <span class="icon">🛒</span>
+            <span class="icon">👤</span>
+        </div>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">Home &gt; Shop &gt; View All</div>
+
+    <!-- MAIN -->
+    <main class="container">
+
+        <!-- FILTERS -->
+        <aside class="filters">
+            <h3>Filters</h3>
+
+            <div class="filter-group">
+                <h4>Brand</h4>
+                <label><input type="checkbox" checked /> Zara</label>
+                <label><input type="checkbox" /> H&amp;M</label>
+                <label><input type="checkbox" /> Bershka</label>
+                <label><input type="checkbox" /> Koton</label>
+            </div>
+
+            <div class="filter-group">
+                <h4>Categories</h4>
+                <label><input type="checkbox" /> Fleece</label>
+                <label><input type="checkbox" /> Sweaters</label>
+                <label><input type="checkbox" /> Shirts</label>
+                <label><input type="checkbox" checked /> All items</label>
+            </div>
+
+            <button class="apply-btn">Apply Filters</button>
+        </aside>
+
+        <!-- PRODUCTS -->
+        <section class="products">
+            <h1>View All Products</h1>
+            <p class="results">Showing 13–24 of 312 Products</p>
+
+            <div class="grid">
+                <!-- PRODUCT CARD -->
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x380" alt="Product" />
+                    <h3>Blazer</h3>
+                    <p class="price">$95</p>
+                    <button>Add to Cart</button>
+                </div>
+
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x380" alt="Product" />
+                    <h3>Elegant A-line trousers</h3>
+                    <p class="price">$72</p>
+                    <button>Add to Cart</button>
+                </div>
+
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x380" alt="Product" />
+                    <h3>Midi Coat</h3>
+                    <p class="price">$105</p>
+                    <button>Add to Cart</button>
+                </div>
+
+                <div class="card sale">
+                    <span class="badge">SALE</span>
+                    <img src="https://via.placeholder.com/300x380" alt="Product" />
+                    <h3>Wool Blazer</h3>
+                    <p class="price"><strong>$50</strong> <span>$55</span></p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- PAGINATION -->
+            <div class="pagination">
+                <button>Back</button>
+                <button>1</button>
+                <button class="active">2</button>
+                <button>3</button>
+                <button>Next</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter">
+        <h2>STAY UP TO DATE ABOUT OUR BEST OFFERS!</h2>
+        <div class="newsletter-form">
+            <input type="email" placeholder="Enter your email address" />
+            <button>Subscribe to Newsletter</button>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div>
+            <h4>SHOP</h4>
+            <p>Dresses</p>
+            <p>Jackets</p>
+            <p>Skirts</p>
+        </div>
+        <div>
+            <h4>INFORMATION</h4>
+            <p>About</p>
+            <p>Privacy Policy</p>
+        </div>
+        <div>
+            <h4>CUSTOMER SUPPORT</h4>
+            <p>Contact</p>
+            <p>FAQ</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
